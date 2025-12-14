@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Qual é a sua Cor?</title>
+    <style>
+        :root {
+            --red: #e74c3c;
+            --yellow: #f1c40f;
+            --green: #2ecc71;
+            --blue: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+
+        .question-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        label:hover {
+            background-color: #f7f9fa;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #1a252f;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Result Styles */
+        #result-area {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s;
+        }
+
+        #result-title {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        #result-desc {
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Color Themes for Result */
+        .res-vermelho { background-color: #fadbd8; border: 2px solid var(--red); color: #c0392b; }
+        .res-amarelo { background-color: #fcf3cf; border: 2px solid var(--yellow); color: #d4ac0d; }
+        .res-verde { background-color: #d5f5e3; border: 2px solid var(--green); color: #27ae60; }
+        .res-azul { background-color: #d6eaf8; border: 2px solid var(--blue); color: #2980b9; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Descubra sua Cor de Personalidade</h1>
+    <p class="subtitle">Responda as 5 perguntas abaixo para descobrir o seu perfil predominante.</p>
+
+    <form id="quizForm">
+        <div class="question-block">
+            <span class="question-title">1. O que mais te motiva no trabalho ou na vida?</span>
+            <label><input type="radio" name="q1" value="vermelho"> Atingir metas, vencer desafios e obter resultados rápidos.</label>
+            <label><input type="radio" name="q1" value="amarelo"> Ser reconhecido, interagir com pessoas e ter liberdade criativa.</label>
+            <label><input type="radio" name="q1" value="verde"> Ter estabilidade, segurança e um ambiente harmonioso.</label>
+            <label><input type="radio" name="q1" value="azul"> Ter processos organizados, precisão e garantia de qualidade.</label>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">2. Como você costuma se comunicar?</span>
+            <label><input type="radio" name="q2" value="vermelho"> Sou direto, falo o que penso e vou logo ao ponto.</label>
+            <label><input type="radio" name="q2" value="amarelo"> Falo bastante, sou animado, gesticulo e conto histórias.</label>
+            <label><input type="radio" name="q2" value="verde"> Falo de forma suave, ouço mais do que falo e evito conflitos.</label>
+            <label><input type="radio" name="q2" value="azul"> Falo com base em fatos, faço muitas perguntas e sou detalhista.</label>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">3. Diante de um problema difícil, qual é sua reação?</span>
+            <label><input type="radio" name="q3" value="vermelho"> Assumo o comando e tento resolver o problema imediatamente.</label>
+            <label><input type="radio" name="q3" value="amarelo"> Tento manter o otimismo e influenciar os outros a ajudar.</label>
+            <label><input type="radio" name="q3" value="verde"> Procuro uma solução pacífica que não prejudique ninguém.</label>
+            <label><input type="radio" name="q3" value="azul"> Analiso os dados e planejo a solução mais lógica e correta.</label>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">4. O que mais o incomoda ou causa stress?</span>
+            <label><input type="radio" name="q4" value="vermelho"> Perder tempo, ineficiência e falta de controle.</label>
+            <label><input type="radio" name="q4" value="amarelo"> Rotina repetitiva, isolamento e críticas rígidas.</label>
+            <label><input type="radio" name="q4" value="verde"> Mudanças bruscas, conflitos agressivos e pressão excessiva.</label>
+            <label><input type="radio" name="q4" value="azul"> Desorganização, falta de clareza e erros no trabalho.</label>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">5. Como você toma decisões importantes?</span>
+            <label><input type="radio" name="q5" value="vermelho"> Rápido e decidido, focado no resultado final.</label>
+            <label><input type="radio" name="q5" value="amarelo"> Intuitivo e rápido, pensando em como isso afetará as pessoas.</label>
+            <label><input type="radio" name="q5" value="verde"> Com calma, consultando outras pessoas para ter consenso.</label>
+            <label><input type="radio" name="q5" value="azul"> Com cautela, analisando todos os prós e contras e os fatos.</label>
+        </div>
+
+        <button type="button" onclick="calcularResultado()">Ver Meu Resultado</button>
+    </form>
+
+    <div id="result-area">
+        <h2 id="result-title"></h2>
+        <p id="result-desc"></p>
+        <button onclick="location.reload()" style="margin-top: 20px; background-color: rgba(0,0,0,0.1); color: inherit;">Refazer Teste</button>
+    </div>
+</div>
+
+<script>
+    function calcularResultado() {
+        // Obter todas as opções selecionadas
+        const form = document.getElementById('quizForm');
+        const formData = new FormData(form);
+        
+        let counts = {
+            vermelho: 0,
+            amarelo: 0,
+            verde: 0,
+            azul: 0
+        };
+
+        let answered = 0;
+
+        // Contar os votos
+        for (let value of formData.values()) {
+            counts[value]++;
+            answered++;
+        }
+
+        // Validação simples
+        if (answered < 5) {
+            alert("Por favor, responda todas as perguntas para ter um resultado preciso.");
+            return;
+        }
+
+        // Descobrir qual a maior pontuação
+        let maxVal = 0;
+        let winner = '';
+
+        for (let color in counts) {
+            if (counts[color] > maxVal) {
+                maxVal = counts[color];
+                winner = color;
+            }
+        }
+
+        // Definir textos de resultado
+        const resultados = {
+            'vermelho': {
+                titulo: "🔴 Vermelho (Executor)",
+                desc: "Você é focado em resultados, direto e assertivo. Gosta de desafios e de estar no controle. Sua maior motivação é vencer.",
+                classe: "res-vermelho"
+            },
+            'amarelo': {
+                titulo: "🟡 Amarelo (Comunicador)",
+                desc: "Você é otimista, persuasivo e sociável. Gosta de interagir com pessoas e sua criatividade é seu ponto forte.",
+                classe: "res-amarelo"
+            },
+            'verde': {
+                titulo: "🟢 Verde (Planejador)",
+                desc: "Você é calmo, paciente e um excelente ouvinte. Valoriza a segurança, a lealdade e prefere ambientes harmônicos sem mudanças bruscas.",
+                classe: "res-verde"
+            },
+            'azul': {
+                titulo: "🔵 Azul (Analista)",
+                desc: "Você é detalhista, preciso e lógico. Gosta de seguir regras, analisar dados e busca a perfeição e a qualidade em tudo o que faz.",
+                classe: "res-azul"
+            }
+        };
+
+        // Exibir resultado
+        const resultArea = document.getElementById('result-area');
+        const resultTitle = document.getElementById('result-title');
+        const resultDesc = document.getElementById('result-desc');
+
+        // Limpar classes anteriores
+        resultArea.className = '';
+        
+        // Adicionar nova classe e texto
+        if (resultados[winner]) {
+            resultTitle.innerText = resultados[winner].titulo;
+            resultDesc.innerText = resultados[winner].desc;
+            resultArea.classList.add(resultados[winner].classe);
+            
+            // Esconder formulário e mostrar resultado
+            document.getElementById('quizForm').style.display = 'none';
+            resultArea.style.display = 'block';
+        } else {
+            alert("Houve um empate! Tente desempatar respondendo novamente.");
+        }
+    }
+</script>
+
+</body>
+</html>
